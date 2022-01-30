@@ -8,7 +8,8 @@ public class SpiritMovement : MonoBehaviour
 
     RaycastHit2D ray;
 
-    GameObject selectedObject;
+    public GameObject selectedObject;
+    public GameObject fond;
 
     SpriteRenderer sprite;
 
@@ -22,7 +23,7 @@ public class SpiritMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(trapID);
+        
         MouseFollow();
 
         GameObjectDetector();
@@ -40,7 +41,12 @@ public class SpiritMovement : MonoBehaviour
     void GameObjectDetector()
     {
         ray = Physics2D.Raycast(new Vector2(mousePosition.x, mousePosition.y), Vector2.zero, 0);
+        if (ray.transform.gameObject == null)
+        {
+            selectedObject = fond;
+        }
         selectedObject = ray.transform.gameObject;
+        
     }
 
     void UseObject()
@@ -49,18 +55,36 @@ public class SpiritMovement : MonoBehaviour
         {
             sprite.enabled = !sprite.enabled;
             trapID = TrapID(1);
+            Debug.Log(trapID);
+        }
+        if (selectedObject.tag == "aurevoir" && Input.GetMouseButtonDown(0))
+        {
+            sprite.enabled = !sprite.enabled;
+            trapID = TrapID(2);
+            Debug.Log(trapID);
+        }
+        if (selectedObject.tag == "mur" && Input.GetMouseButtonDown(0))
+        {
+            sprite.enabled = !sprite.enabled;
+            trapID = TrapID(3);
+            Debug.Log(trapID);
         }
     }
 
     int TrapID(int value)
     {
-        if(trapID == 0 && value == 1)
+        
+        if (trapID == 0 && value == 1)
         {
             return 1;
         }
-        else if(trapID == 1)
+        else if(trapID == 0 && value == 2)
         {
-            return 0;
+            return 2;
+        }
+        else if (trapID == 0 && value == 3)
+        {
+            return 3;
         }
         else
         {

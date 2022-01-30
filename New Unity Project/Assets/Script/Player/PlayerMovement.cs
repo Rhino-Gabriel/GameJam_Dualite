@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
@@ -44,13 +45,19 @@ public class PlayerMovement : MonoBehaviour
     private bool randomDodge = true;
     [SerializeField]
     private AudioSource myAudio;
+    [SerializeField]
+    private AudioSource myAudio1;
+    [SerializeField]
+    private AudioSource myAudio2;
+    [SerializeField]
+    private AudioSource myAudio3;
     public static bool lessDash = false;
 
     [Header("Interact")]
     [SerializeField]
     public static int collectable;
 
-    
+
 
     private void Start()
     {
@@ -63,35 +70,36 @@ public class PlayerMovement : MonoBehaviour
         TimeDash();
         CrazyReaction();
         RandomTimeDash();
+        Echap();
 
         movement = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
         movement.Normalize();
         transform.Translate(movement * moveSpeed * Time.deltaTime);
-        
-        if(Input.GetKey(KeyCode.Q) && facingRight)
-        {          
-                Flip();                   
+
+        if (Input.GetKey(KeyCode.Q) && facingRight)
+        {
+            Flip();
         }
 
         else if (Input.GetKey(KeyCode.D) && !facingRight)
-        {           
-                Flip();          
+        {
+            Flip();
         }
 
         if (Input.GetKeyDown(KeyCode.Space))
+        {
+            if (dashTime <= 0 && !lessDash)
             {
-                if (dashTime <= 0 && !lessDash)
-                {
-                    dashTime = 2;
-                }
-
-                else if(dashTime <= 0 && lessDash)
-                {
-                    dashTime = 3;
-                }                   
+                dashTime = 2;
             }
-        
-        
+
+            else if (dashTime <= 0 && lessDash)
+            {
+                dashTime = 3;
+            }
+        }
+
+
         if (dodge && dashTime >= 1.5 && !lessDash)
         {
             moveSpeed = dodgeSpeed;
@@ -104,9 +112,10 @@ public class PlayerMovement : MonoBehaviour
             myCollider.enabled = false;
         }
 
-        else if(collectable == 4)
+        else if (collectable == 4)
         {
             Debug.Log("Win");
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         }
 
         else
@@ -115,13 +124,17 @@ public class PlayerMovement : MonoBehaviour
             myCollider.enabled = true;
         }
 
-      
-    }
-    void FixedUpdate()
-    {
-       
+
     }
 
+
+    public void Echap()
+    {
+        if (Input.GetKey(KeyCode.Escape))
+        {
+            Application.Quit();
+        }
+    }
     public void TimeDash()
     {
         if (dashTime > dashEnd)
@@ -157,6 +170,7 @@ public class PlayerMovement : MonoBehaviour
         if (currentCrazyBar == maxCrazyBar)
         {
             Destroy(gameObject);
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         }
 
         if(Input.GetKeyDown(KeyCode.F))
@@ -173,6 +187,9 @@ public class PlayerMovement : MonoBehaviour
         {
             initialSpeed = slowSpeed;
             lessDash = false;
+            myAudio1.enabled = true;
+            myAudio2.enabled = false;
+            myAudio3.enabled = false;
         }
 
         else if (currentCrazyBar >= 0.50f && currentCrazyBar < 0.75f)
@@ -180,6 +197,8 @@ public class PlayerMovement : MonoBehaviour
             initialSpeed = slowSpeed;
             lessDash = true;
             myAudio.enabled = false;
+            myAudio2.enabled = true;
+            myAudio1.enabled = false;
         }
 
         else if (currentCrazyBar >= 0.75)
@@ -188,6 +207,7 @@ public class PlayerMovement : MonoBehaviour
             initialSpeed = slowSpeed;
             lessDash = true;
             myAudio.enabled = true;
+            myAudio2.enabled = false;
 
             if (randomDodge)
             {
@@ -208,6 +228,8 @@ public class PlayerMovement : MonoBehaviour
 
         else
         {
+            myAudio3.enabled = true;
+            myAudio1.enabled = false;
             initialSpeed = 5f;
         }
 

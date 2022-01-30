@@ -44,7 +44,17 @@ public class PlayerMovement : MonoBehaviour
     private bool randomDodge = true;
     [SerializeField]
     private AudioSource myAudio;
+    [SerializeField]
+    private AudioSource myAudio1;
+    [SerializeField]
+    private AudioSource myAudio2;
+    [SerializeField]
+    private AudioSource myAudio3;
     public static bool lessDash = false;
+
+    [Header("Interact")]
+    [SerializeField]
+    public static int collectable;
 
     
 
@@ -69,7 +79,7 @@ public class PlayerMovement : MonoBehaviour
                 Flip();                   
         }
 
-        if (Input.GetKey(KeyCode.D) && !facingRight)
+        else if (Input.GetKey(KeyCode.D) && !facingRight)
         {           
                 Flip();          
         }
@@ -98,6 +108,11 @@ public class PlayerMovement : MonoBehaviour
         {
             moveSpeed = dodgeSpeed;
             myCollider.enabled = false;
+        }
+
+        else if(collectable == 4)
+        {
+            Debug.Log("Win");
         }
 
         else
@@ -164,6 +179,9 @@ public class PlayerMovement : MonoBehaviour
         {
             initialSpeed = slowSpeed;
             lessDash = false;
+            myAudio1.enabled = true;
+            myAudio2.enabled = false;
+            myAudio3.enabled = false;
         }
 
         else if (currentCrazyBar >= 0.50f && currentCrazyBar < 0.75f)
@@ -171,6 +189,8 @@ public class PlayerMovement : MonoBehaviour
             initialSpeed = slowSpeed;
             lessDash = true;
             myAudio.enabled = false;
+            myAudio2.enabled = true;
+            myAudio1.enabled = false;
         }
 
         else if (currentCrazyBar >= 0.75)
@@ -179,6 +199,7 @@ public class PlayerMovement : MonoBehaviour
             initialSpeed = slowSpeed;
             lessDash = true;
             myAudio.enabled = true;
+            myAudio2.enabled = false;
 
             if (randomDodge)
             {
@@ -199,6 +220,8 @@ public class PlayerMovement : MonoBehaviour
 
         else
         {
+            myAudio3.enabled = true;
+            myAudio1.enabled = false;
             initialSpeed = 5f;
         }
 
@@ -210,12 +233,11 @@ public class PlayerMovement : MonoBehaviour
         transform.localScale = new Vector2(transform.localScale.x * -1, transform.localScale.y);
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerEnter2D(Collider2D other)
     {
         if(other.gameObject.layer == 11)
         {
             currentCrazyBar += 0.125f;
         }
     }
-
 }
