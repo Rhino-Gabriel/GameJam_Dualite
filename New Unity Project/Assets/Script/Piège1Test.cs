@@ -68,9 +68,9 @@ public class Piège1Test : MonoBehaviour
         //Vector3 dir = arrowTrans.position - transform.position;
         //float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
         
-        float varx = (mousePosition.x - arrow.transform.position.x)*-1;
+        float varx = (mousePosition.x - arrow.transform.position.x);
         float vary = (mousePosition.y - arrow.transform.position.y);
-        Vector2 direction = new Vector2(vary, varx);
+        Vector2 direction = new Vector2(varx, vary);
         arrow.transform.up = direction;
     }
 }
