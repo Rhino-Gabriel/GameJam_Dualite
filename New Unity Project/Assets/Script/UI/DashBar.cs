@@ -29,5 +29,10 @@ public class DashBar : MonoBehaviour
         {
             maxDash1 = maxDash2;
         }
+
+        if (PlayerMovement.lessDash == false)
+        {
+            maxDash1 = 2;
+        }
     }
 }

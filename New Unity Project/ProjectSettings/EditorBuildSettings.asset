@@ -14,4 +14,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/PlayerWin.unity
     guid: 6bb2d598574c7d4af877379e87c970d5
+  - enabled: 1
+    path: Assets/Scenes/GhostWin.unity
+    guid: d8704cfd64dbd932b9ec9e1def247412
   m_configObjects: {}

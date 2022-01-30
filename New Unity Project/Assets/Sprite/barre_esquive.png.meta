@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 56820abb1573e0742af26d71c26dd3bc
+guid: 810f67993eed2184c914abeccb5f82bd
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -3560698593848636649
-    second: credits_0
+      213: -6255137369556757821
+    second: barre_esquive_1
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -94,13 +94,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: credits_0
+      name: barre_esquive_0
       rect:
         serializedVersion: 2
         x: 46
-        y: 182
-        width: 146
-        height: 52
+        y: 30
+        width: 216
+        height: 48
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -108,8 +108,29 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 71b4b698e7bd59ec0800000000000000
-      internalID: -3560698593848636649
+      spriteID: d23c24a06cfa2fa50800000000000000
+      internalID: 6553493672888025901
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: barre_esquive_1
+      rect:
+        serializedVersion: 2
+        x: 270
+        y: 18
+        width: 119
+        height: 72
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3c25c4a14b94139a0800000000000000
+      internalID: -6255137369556757821
       vertices: []
       indices: 
       edges: []

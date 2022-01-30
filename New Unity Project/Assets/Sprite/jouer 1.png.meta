@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 56820abb1573e0742af26d71c26dd3bc
+guid: 532a41b70a9917d4c8590b3ca4d28cbb
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -3560698593848636649
-    second: credits_0
+      213: 4489251065455731099
+    second: jouer 1_0
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -94,13 +94,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: credits_0
+      name: jouer 1_0
       rect:
         serializedVersion: 2
-        x: 46
-        y: 182
-        width: 146
-        height: 52
+        x: 19
+        y: 180
+        width: 117
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -108,8 +108,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 71b4b698e7bd59ec0800000000000000
-      internalID: -3560698593848636649
+      spriteID: b9168081f060d4e30800000000000000
+      internalID: 4489251065455731099
       vertices: []
       indices: 
       edges: []

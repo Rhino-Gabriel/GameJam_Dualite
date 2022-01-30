@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.SceneManagement;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -52,6 +53,10 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField]
     private AudioSource myAudio3;
     public static bool lessDash = false;
+    public Image eyes;
+    public Image eyes1;
+    public Image eyes2;
+    public Image eyes3;
 
     [Header("Interact")]
     [SerializeField]
@@ -114,8 +119,7 @@ public class PlayerMovement : MonoBehaviour
 
         else if (collectable == 4)
         {
-            Debug.Log("Win");
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+            Win();
         }
 
         else
@@ -127,6 +131,10 @@ public class PlayerMovement : MonoBehaviour
 
     }
 
+    public void Win()
+    {
+        SceneManager.LoadScene("PlayerWin");
+    }
 
     public void Echap()
     {
@@ -170,7 +178,7 @@ public class PlayerMovement : MonoBehaviour
         if (currentCrazyBar == maxCrazyBar)
         {
             Destroy(gameObject);
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+            SceneManager.LoadScene("GhostWin");
         }
 
         if(Input.GetKeyDown(KeyCode.F))
@@ -185,25 +193,33 @@ public class PlayerMovement : MonoBehaviour
 
         else if(currentCrazyBar >= 0.25f && currentCrazyBar < 0.50f)
         {
+            eyes.enabled = false;
+            eyes1.enabled = true;
+            eyes2.enabled = false;
             initialSpeed = slowSpeed;
             lessDash = false;
             myAudio1.enabled = true;
             myAudio2.enabled = false;
             myAudio3.enabled = false;
+            lessDash = false;
         }
 
         else if (currentCrazyBar >= 0.50f && currentCrazyBar < 0.75f)
-        {          
+        {
+            eyes1.enabled = false;
+            eyes2.enabled = true;
+            eyes3.enabled = false;
             initialSpeed = slowSpeed;
             lessDash = true;
             myAudio.enabled = false;
             myAudio2.enabled = true;
-            myAudio1.enabled = false;
+            myAudio1.enabled = false;           
         }
 
         else if (currentCrazyBar >= 0.75)
         {
-
+            eyes2.enabled = false;
+            eyes3.enabled = true;
             initialSpeed = slowSpeed;
             lessDash = true;
             myAudio.enabled = true;
@@ -228,6 +244,8 @@ public class PlayerMovement : MonoBehaviour
 
         else
         {
+            eyes1.enabled = false;
+            eyes.enabled = true;
             myAudio3.enabled = true;
             myAudio1.enabled = false;
             initialSpeed = 5f;

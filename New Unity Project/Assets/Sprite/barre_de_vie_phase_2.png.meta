@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 56820abb1573e0742af26d71c26dd3bc
+guid: a79d4c5cbef1e4347a55305643cdddb1
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -3560698593848636649
-    second: credits_0
+      213: 3142984849930832728
+    second: barre_de_vie_phase_2_0
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -35,7 +35,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 0
+    filterMode: 1
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -94,13 +94,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: credits_0
+      name: barre_de_vie_phase_2_0
       rect:
         serializedVersion: 2
-        x: 46
-        y: 182
-        width: 146
-        height: 52
+        x: 256
+        y: 46
+        width: 91
+        height: 57
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -108,8 +108,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 71b4b698e7bd59ec0800000000000000
-      internalID: -3560698593848636649
+      spriteID: 85bcf8a91102e9b20800000000000000
+      internalID: 3142984849930832728
       vertices: []
       indices: 
       edges: []

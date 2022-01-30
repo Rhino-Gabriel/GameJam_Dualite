@@ -1,10 +1,13 @@
 fileFormatVersion: 2
-guid: 56820abb1573e0742af26d71c26dd3bc
+guid: 89228d3bb85f79a42a43de69f3fb570d
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -3560698593848636649
-    second: credits_0
+      213: 7979945243369632448
+    second: barre_de_vie_base_0
+  - first:
+      213: 6498282535763794305
+    second: barre_de_vie_base_1
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -94,13 +97,34 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: credits_0
+      name: barre_de_vie_base_0
       rect:
         serializedVersion: 2
-        x: 46
-        y: 182
-        width: 146
-        height: 52
+        x: 76
+        y: 54
+        width: 178
+        height: 39
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0c27d165be57ebe60800000000000000
+      internalID: 7979945243369632448
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: barre_de_vie_base_1
+      rect:
+        serializedVersion: 2
+        x: 255
+        y: 43
+        width: 94
+        height: 61
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -108,8 +132,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 71b4b698e7bd59ec0800000000000000
-      internalID: -3560698593848636649
+      spriteID: 189535279898e2a50800000000000000
+      internalID: 6498282535763794305
       vertices: []
       indices: 
       edges: []
