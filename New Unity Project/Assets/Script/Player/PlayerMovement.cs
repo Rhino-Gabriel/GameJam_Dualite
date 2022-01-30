@@ -13,6 +13,11 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField]
     private bool facingRight;
     Vector2 movement;
+    public GameObject left;
+    public GameObject right;
+    public GameObject front;
+    public GameObject back;
+    public GameObject basedeplacement;
 
     [Header("Dodge")]
     [SerializeField]
@@ -76,7 +81,7 @@ public class PlayerMovement : MonoBehaviour
         movement.Normalize();
         transform.Translate(movement * moveSpeed * Time.deltaTime);
 
-        if (Input.GetKey(KeyCode.Q) && facingRight)
+        /*if (Input.GetKey(KeyCode.Q) && facingRight)
         {
             Flip();
         }
@@ -84,6 +89,47 @@ public class PlayerMovement : MonoBehaviour
         else if (Input.GetKey(KeyCode.D) && !facingRight)
         {
             Flip();
+        }*/
+        
+        if (Input.GetKey(KeyCode.Q))
+        {
+            left.SetActive(true);
+            right.SetActive(false);
+            back.SetActive(false);
+            front.SetActive(false);
+            basedeplacement.SetActive(false);
+        }
+        else if (Input.GetKey(KeyCode.D))
+        {
+            left.SetActive(false);
+            right.SetActive(true);
+            back.SetActive(false);
+            front.SetActive(false);
+            basedeplacement.SetActive(false);
+        }
+        else if (Input.GetKey(KeyCode.S))
+        {
+            left.SetActive(false);
+            right.SetActive(false);
+            back.SetActive(false);
+            front.SetActive(true);
+            basedeplacement.SetActive(false);
+        }
+        else if (Input.GetKey(KeyCode.Z))
+        {
+            left.SetActive(false);
+            right.SetActive(false);
+            back.SetActive(true);
+            front.SetActive(false);
+            basedeplacement.SetActive(false);
+        }
+        else
+        {
+            basedeplacement.SetActive(true);
+            left.SetActive(false);
+            right.SetActive(false);
+            back.SetActive(false);
+            front.SetActive(false);
         }
 
         if (Input.GetKeyDown(KeyCode.Space))
@@ -235,17 +281,26 @@ public class PlayerMovement : MonoBehaviour
 
     }
 
-    public void Flip()
+    /*public void Flip()
     {
         facingRight = !facingRight;
         transform.localScale = new Vector2(transform.localScale.x * -1, transform.localScale.y);
-    }
+    }*/
 
     private void OnTriggerEnter2D(Collider2D other)
     {
         if(other.gameObject.layer == 11)
         {
             currentCrazyBar += 0.125f;
+        }
+        if(other.gameObject.layer == 12)
+        {
+            currentCrazyBar += 0.250f;
+        }
+        if(other.gameObject.tag == "TpTrap")
+        {
+            Vector3 tele = new Vector3(0, 9, transform.position.z);
+            transform.position = tele;
         }
     }
 }

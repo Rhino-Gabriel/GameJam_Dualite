@@ -5,6 +5,7 @@ using UnityEngine;
 public class Trap3 : MonoBehaviour
 {
     public float timer = 5;
+    public float cooldown = 3;
     bool trapactive = false;
     public GameObject hole;
     void Update()
@@ -12,6 +13,10 @@ public class Trap3 : MonoBehaviour
         if (timer < 5)
         {
             timer += Time.deltaTime;
+        }
+        if (cooldown < 3)
+        {
+            cooldown += Time.deltaTime;
         }
         if (SpiritMovement.trapID == 3)
         {
@@ -21,7 +26,7 @@ public class Trap3 : MonoBehaviour
 
     void HoleAppear()
     {
-        if (Input.GetMouseButtonDown(1))
+        if (Input.GetMouseButtonDown(1) && timer >= 5 && cooldown >= 3)
         {
             Debug.Log("shoot");
             hole.SetActive(true);
@@ -32,6 +37,7 @@ public class Trap3 : MonoBehaviour
         {
             hole.SetActive(false);
             trapactive = false;
+            cooldown = 0;
         }
     }
 }

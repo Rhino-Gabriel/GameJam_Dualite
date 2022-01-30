@@ -8,6 +8,8 @@ TagManager:
   - aurevoir
   - mur
   - Teleporter
+  - teletrap
+  - TpTrap
   layers:
   - Default
   - TransparentFX
@@ -20,8 +22,8 @@ TagManager:
   - 
   - 
   - 
-  - 
-  - 
+  - bullet
+  - TpTrapDegat
   - 
   - 
   - 

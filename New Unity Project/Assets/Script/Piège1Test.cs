@@ -10,6 +10,8 @@ public class Piège1Test : MonoBehaviour
 
     public GameObject projectile;
 
+    public float cooldown = 3;
+
     public Transform arrowTrans;
 
     public Transform cibleTrans;
@@ -23,6 +25,10 @@ public class Piège1Test : MonoBehaviour
 
     void Update()
     {
+        if (cooldown < 3)
+        {
+            cooldown += Time.deltaTime;
+        }
         GetInTrap();
     }
 
@@ -54,10 +60,11 @@ public class Piège1Test : MonoBehaviour
 
     void Shoot()
     {
-        if (Input.GetMouseButtonDown(1))
+        if (Input.GetMouseButtonDown(1) && cooldown >= 3)
         {
             Debug.Log("Shoot");
             Instantiate(projectile);
+            cooldown = 0;
         }
     }
 

@@ -2,43 +2,43 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Trap2 : MonoBehaviour
+public class Trap4 : MonoBehaviour
 {
     public float timer = 5;
-    public float cooldown = 5;
+    public float cooldown = 3;
     bool trapactive = false;
-    public GameObject spider;
-
+    public GameObject ecran;
+    public GameObject trap;
     void Update()
     {
         if (timer < 5)
         {
             timer += Time.deltaTime;
         }
-        if (cooldown < 5)
+        if (cooldown < 3)
         {
             cooldown += Time.deltaTime;
         }
-        if (SpiritMovement.trapID == 2)
+        if (SpiritMovement.trapID == 4)
         {
-            SpiderFollow();
+            HoleAppear();
         }
     }
 
-    void SpiderFollow()
+    void HoleAppear()
     {
-        Vector3 move2 = new Vector3(-3, -2, 0);
-        if (Input.GetMouseButtonDown(1) && timer >= 5 && cooldown >= 5)
+        if (Input.GetMouseButtonDown(1) && timer >= 5 && cooldown >= 3)
         {
-            Vector3 move = new Vector3(3, 2, 0);
-            
-            spider.transform.position += move;
+            Debug.Log("shoot");
+            ecran.SetActive(true);
             timer = 0;
             trapactive = true;
+            trap.SetActive(true);
         }
         if (timer >= 5 && trapactive)
         {
-            spider.transform.position += move2;
+            ecran.SetActive(false);
+            trap.SetActive(false);
             trapactive = false;
             cooldown = 0;
         }
