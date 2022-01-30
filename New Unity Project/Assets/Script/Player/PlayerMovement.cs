@@ -61,6 +61,11 @@ public class PlayerMovement : MonoBehaviour
     [Header("Interact")]
     [SerializeField]
     public static int collectable;
+    public float timertp = 5;
+    public bool trapactive;
+
+    public GameObject red;
+    public GameObject blue;
 
 
 
@@ -72,10 +77,32 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (timertp < 5)
+        {
+            timertp += Time.deltaTime;
+        }
+        if(timertp >= 5 && trapactive)
+        {
+            Vector3 teletpback = new Vector3(-14, 11, transform.position.z);
+            transform.position = teletpback;
+            trapactive = false;
+        }
+
         TimeDash();
         CrazyReaction();
         RandomTimeDash();
         Echap();
+
+        if(currentCrazyBar <= 50f)
+        {
+            blue.SetActive(true);
+            red.SetActive(false);
+        }
+        else if(currentCrazyBar > 50f)
+        {
+            red.SetActive(true);
+            blue.SetActive(false);
+        }
 
         movement = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
         movement.Normalize();
@@ -301,6 +328,8 @@ public class PlayerMovement : MonoBehaviour
         {
             Vector3 tele = new Vector3(0, 9, transform.position.z);
             transform.position = tele;
+            timertp = 0;
+            trapactive = true;
         }
     }
 }

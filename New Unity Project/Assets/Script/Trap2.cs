@@ -30,7 +30,7 @@ public class Trap2 : MonoBehaviour
         Vector3 move2 = new Vector3(-3, -2, 0);
         if (Input.GetMouseButtonDown(1) && timer >= 5 && cooldown >= 5)
         {
-            Vector3 move = new Vector3(3, 2, 0);
+            Vector3 move = new Vector3(1, 1, 0);
             
             spider.transform.position += move;
             timer = 0;
