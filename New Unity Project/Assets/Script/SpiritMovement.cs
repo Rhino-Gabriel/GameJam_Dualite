@@ -9,7 +9,7 @@ public class SpiritMovement : MonoBehaviour
     RaycastHit2D ray;
 
     public GameObject selectedObject;
-    public GameObject fond;
+    public GameObject spirit;
 
     SpriteRenderer sprite;
 
@@ -41,10 +41,6 @@ public class SpiritMovement : MonoBehaviour
     void GameObjectDetector()
     {
         ray = Physics2D.Raycast(new Vector2(mousePosition.x, mousePosition.y), Vector2.zero, 0);
-        if (ray.transform.gameObject == null)
-        {
-            selectedObject = fond;
-        }
         selectedObject = ray.transform.gameObject;
         
     }
@@ -69,6 +65,12 @@ public class SpiritMovement : MonoBehaviour
             trapID = TrapID(3);
             Debug.Log(trapID);
         }
+        if (selectedObject.tag == "teletrap" && Input.GetMouseButtonDown(0))
+        {
+            sprite.enabled = !sprite.enabled;
+            trapID = TrapID(4);
+            Debug.Log(trapID);
+        }
     }
 
     int TrapID(int value)
@@ -85,6 +87,10 @@ public class SpiritMovement : MonoBehaviour
         else if (trapID == 0 && value == 3)
         {
             return 3;
+        }
+        else if (trapID == 0 && value == 4)
+        {
+            return 4;
         }
         else
         {

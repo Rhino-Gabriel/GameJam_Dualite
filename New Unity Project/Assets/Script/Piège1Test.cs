@@ -10,6 +10,8 @@ public class Piège1Test : MonoBehaviour
 
     public GameObject projectile;
 
+    public float cooldown = 2;
+
     public Transform arrowTrans;
 
     public Transform cibleTrans;
@@ -23,6 +25,10 @@ public class Piège1Test : MonoBehaviour
 
     void Update()
     {
+        if (cooldown < 2)
+        {
+            cooldown += Time.deltaTime;
+        }
         GetInTrap();
     }
 
@@ -54,10 +60,11 @@ public class Piège1Test : MonoBehaviour
 
     void Shoot()
     {
-        if (Input.GetMouseButtonDown(1))
+        if (Input.GetMouseButtonDown(1) && cooldown >= 2)
         {
             Debug.Log("Shoot");
             Instantiate(projectile);
+            cooldown = 0;
         }
     }
 
@@ -68,9 +75,9 @@ public class Piège1Test : MonoBehaviour
         //Vector3 dir = arrowTrans.position - transform.position;
         //float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
         
-        float varx = (mousePosition.x - arrow.transform.position.x)*-1;
+        float varx = (mousePosition.x - arrow.transform.position.x);
         float vary = (mousePosition.y - arrow.transform.position.y);
-        Vector2 direction = new Vector2(vary, varx);
+        Vector2 direction = new Vector2(varx, vary);
         arrow.transform.up = direction;
     }
 }

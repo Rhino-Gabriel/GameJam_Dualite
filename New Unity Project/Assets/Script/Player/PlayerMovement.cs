@@ -14,6 +14,11 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField]
     private bool facingRight;
     Vector2 movement;
+    public GameObject left;
+    public GameObject right;
+    public GameObject front;
+    public GameObject back;
+    public GameObject basedeplacement;
 
     [Header("Dodge")]
     [SerializeField]
@@ -61,6 +66,11 @@ public class PlayerMovement : MonoBehaviour
     [Header("Interact")]
     [SerializeField]
     public static int collectable;
+    public float timertp = 5;
+    public bool trapactive;
+
+    public GameObject red;
+    public GameObject blue;
 
 
 
@@ -72,16 +82,38 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (timertp < 5)
+        {
+            timertp += Time.deltaTime;
+        }
+        if(timertp >= 5 && trapactive)
+        {
+            Vector3 teletpback = new Vector3(-14, 11, transform.position.z);
+            transform.position = teletpback;
+            trapactive = false;
+        }
+
         TimeDash();
         CrazyReaction();
         RandomTimeDash();
         Echap();
 
+        if(currentCrazyBar <= 50f)
+        {
+            blue.SetActive(true);
+            red.SetActive(false);
+        }
+        else if(currentCrazyBar > 50f)
+        {
+            red.SetActive(true);
+            blue.SetActive(false);
+        }
+
         movement = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
         movement.Normalize();
         transform.Translate(movement * moveSpeed * Time.deltaTime);
 
-        if (Input.GetKey(KeyCode.Q) && facingRight)
+        /*if (Input.GetKey(KeyCode.Q) && facingRight)
         {
             Flip();
         }
@@ -89,6 +121,47 @@ public class PlayerMovement : MonoBehaviour
         else if (Input.GetKey(KeyCode.D) && !facingRight)
         {
             Flip();
+        }*/
+        
+        if (Input.GetKey(KeyCode.Q))
+        {
+            left.SetActive(true);
+            right.SetActive(false);
+            back.SetActive(false);
+            front.SetActive(false);
+            basedeplacement.SetActive(false);
+        }
+        else if (Input.GetKey(KeyCode.D))
+        {
+            left.SetActive(false);
+            right.SetActive(true);
+            back.SetActive(false);
+            front.SetActive(false);
+            basedeplacement.SetActive(false);
+        }
+        else if (Input.GetKey(KeyCode.S))
+        {
+            left.SetActive(false);
+            right.SetActive(false);
+            back.SetActive(false);
+            front.SetActive(true);
+            basedeplacement.SetActive(false);
+        }
+        else if (Input.GetKey(KeyCode.Z))
+        {
+            left.SetActive(false);
+            right.SetActive(false);
+            back.SetActive(true);
+            front.SetActive(false);
+            basedeplacement.SetActive(false);
+        }
+        else
+        {
+            basedeplacement.SetActive(true);
+            left.SetActive(false);
+            right.SetActive(false);
+            back.SetActive(false);
+            front.SetActive(false);
         }
 
         if (Input.GetKeyDown(KeyCode.Space))
@@ -253,17 +326,28 @@ public class PlayerMovement : MonoBehaviour
 
     }
 
-    public void Flip()
+    /*public void Flip()
     {
         facingRight = !facingRight;
         transform.localScale = new Vector2(transform.localScale.x * -1, transform.localScale.y);
-    }
+    }*/
 
     private void OnTriggerEnter2D(Collider2D other)
     {
         if(other.gameObject.layer == 11)
         {
             currentCrazyBar += 0.125f;
+        }
+        if(other.gameObject.layer == 12)
+        {
+            currentCrazyBar += 0.250f;
+        }
+        if(other.gameObject.tag == "TpTrap")
+        {
+            Vector3 tele = new Vector3(0, 9, transform.position.z);
+            transform.position = tele;
+            timertp = 0;
+            trapactive = true;
         }
     }
 }
