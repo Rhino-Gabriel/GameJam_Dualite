@@ -16,8 +16,6 @@ public class Piège1Test : MonoBehaviour
 
     SpriteRenderer sprite;
 
-    float speed = 100f;
-
     private void Start()
     {
         sprite = GetComponent<SpriteRenderer>();
@@ -30,11 +28,9 @@ public class Piège1Test : MonoBehaviour
 
     void GetInTrap()
     {
-        Debug.Log(arrow.transform.position);
-
         if(SpiritMovement.trapID == 1)
         {
-            sprite.enabled = true;
+            //sprite.enabled = true;
             arrow.SetActive(true);
 
             MouseFollow();
@@ -45,7 +41,7 @@ public class Piège1Test : MonoBehaviour
         }
         if(SpiritMovement.trapID == 0)
         {
-            sprite.enabled = false;
+            //sprite.enabled = false;
             arrow.SetActive(false);
         }
     }
@@ -61,7 +57,7 @@ public class Piège1Test : MonoBehaviour
         if (Input.GetMouseButtonDown(1))
         {
             Debug.Log("Shoot");
-            Instantiate(projectile, arrowTrans.position, arrowTrans.rotation);
+            Instantiate(projectile);
         }
     }
 

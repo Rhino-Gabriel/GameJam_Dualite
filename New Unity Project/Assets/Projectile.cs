@@ -10,12 +10,10 @@ public class Projectile : MonoBehaviour
     {
         mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         mousePosition.z = Camera.main.transform.position.z + Camera.main.nearClipPlane;
-        
     }
 
     void Update()
     {
-        
         Vector3 var = mousePosition;
         transform.position += var * speed * Time.deltaTime;
     }

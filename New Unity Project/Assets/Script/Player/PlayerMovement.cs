@@ -46,6 +46,10 @@ public class PlayerMovement : MonoBehaviour
     private AudioSource myAudio;
     public static bool lessDash = false;
 
+    [Header("Interact")]
+    [SerializeField]
+    public static int collectable;
+
     
 
     private void Start()
@@ -69,7 +73,7 @@ public class PlayerMovement : MonoBehaviour
                 Flip();                   
         }
 
-        if (Input.GetKey(KeyCode.D) && !facingRight)
+        else if (Input.GetKey(KeyCode.D) && !facingRight)
         {           
                 Flip();          
         }
@@ -98,6 +102,11 @@ public class PlayerMovement : MonoBehaviour
         {
             moveSpeed = dodgeSpeed;
             myCollider.enabled = false;
+        }
+
+        else if(collectable == 4)
+        {
+            Debug.Log("Win");
         }
 
         else
@@ -210,12 +219,11 @@ public class PlayerMovement : MonoBehaviour
         transform.localScale = new Vector2(transform.localScale.x * -1, transform.localScale.y);
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerEnter2D(Collider2D other)
     {
         if(other.gameObject.layer == 11)
         {
             currentCrazyBar += 0.125f;
         }
     }
-
 }
